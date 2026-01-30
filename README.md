@@ -88,9 +88,16 @@ This structure allows deterministic uniqueness without coordination.
    ```
 
 3. **Run the following postgre command in the shell of first pod to ensure id count equals distinct id count:**
-   ????
-
-For more detailed instructions, please refer to the individual service documentation within this repository.
+   - make check file executable
+   ```bash
+   chmod +x ../tests/docker_id_duplication_check.sh
+   ```
+   - execute file to see results
+   ```bash
+   ../tests/docker_id_duplication_check.sh 
+   ```
+4. **Compare result of total_rows count vs distinct_rows**
+   <img width="1150" height="351" alt="Screenshot from 2026-01-30 09-00-39" src="https://github.com/user-attachments/assets/ee7ae10e-b7a6-4501-b6ac-6e36a10346dd" />
 
 ---
 
