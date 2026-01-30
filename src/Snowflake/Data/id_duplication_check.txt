@@ -1,0 +1,10 @@
+docker exec -it snow_flake_db_1 psql -U postgres -d snow_flake_db -c "
+CREATE TABLE IF NOT EXISTS MergedSnowflakeIds(Id BIGINT PRIMARY KEY);" && \
+docker exec -i snow_flake_db_1 psql -U postgres -d snow_flake_db -c "\COPY (select \"Id\" from \"UniqueIds\") TO STDOUT CSV" \
+| docker exec -i snow_flake_db_1 psql -U postgres -d snow_flake_db -c "\COPY MergedSnowflakeIds(Id) FROM STDIN CSV" && \
+docker exec -i snow_flake_db_2 psql -U postgres -d snow_flake_db -c "\COPY (select \"Id\" from \"UniqueIds\") TO STDOUT CSV" \
+| docker exec -i snow_flake_db_1 psql -U postgres -d snow_flake_db -c "\COPY MergedSnowflakeIds(Id) FROM STDIN CSV" && \
+docker exec -i snow_flake_db_3 psql -U postgres -d snow_flake_db -c "\COPY (select \"Id\" from \"UniqueIds\") TO STDOUT CSV" \
+| docker exec -i snow_flake_db_1 psql -U postgres -d snow_flake_db -c "\COPY MergedSnowflakeIds(Id) FROM STDIN CSV" && \
+docker exec -it snow_flake_db_1 psql -U postgres -d snow_flake_db -c "
+SELECT COUNT(*) AS total_rows, COUNT(DISTINCT Id) AS distinct_rows FROM MergedSnowflakeIds;"

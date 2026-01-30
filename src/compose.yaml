@@ -1,0 +1,104 @@
+﻿services:
+  postgres_db_1:
+    image: postgres:15-alpine
+    restart: always
+    container_name: snow_flake_db_1
+    environment:
+      POSTGRES_DB: snow_flake_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5460:5432"
+    volumes:
+      - snow_flake_db_1_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  snowflake_1:
+    image: snowflake_1
+    depends_on:
+      postgres_db_1:
+        condition: service_healthy
+    build:
+      context: .
+      dockerfile: Snowflake/Dockerfile
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=postgres_db_1;Port=5432;Database=snow_flake_db;Username=postgres;Password=postgres
+      - Snowflake__DataCenterId=1
+      - Snowflake__MachineId=11
+    tty: true
+    stdin_open: true
+
+  postgres_db_2:
+    image: postgres:15-alpine
+    restart: always
+    container_name: snow_flake_db_2
+    environment:
+      POSTGRES_DB: snow_flake_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5461:5432"
+    volumes:
+      - snow_flake_db_2_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  snowflake_2:
+    image: snowflake_2
+    depends_on:
+      postgres_db_2:
+        condition: service_healthy
+    build:
+      context: .
+      dockerfile: Snowflake/Dockerfile
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=postgres_db_2;Port=5432;Database=snow_flake_db;Username=postgres;Password=postgres
+      - Snowflake__DataCenterId=2
+      - Snowflake__MachineId=12
+    tty: true
+    stdin_open: true
+
+  postgres_db_3:
+    image: postgres:15-alpine
+    restart: always
+    container_name: snow_flake_db_3
+    environment:
+      POSTGRES_DB: snow_flake_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5462:5432"
+    volumes:
+      - snow_flake_db_3_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  snowflake_3:
+    image: snowflake_3
+    depends_on:
+      postgres_db_3:
+        condition: service_healthy
+    build:
+      context: .
+      dockerfile: Snowflake/Dockerfile
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=postgres_db_3;Port=5432;Database=snow_flake_db;Username=postgres;Password=postgres
+      - Snowflake__DataCenterId=3
+      - Snowflake__MachineId=13
+    tty: true
+    stdin_open: true
+
+volumes:
+  snow_flake_db_1_data:
+  snow_flake_db_2_data:
+  snow_flake_db_3_data:    
