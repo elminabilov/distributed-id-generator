@@ -19,9 +19,9 @@ via distinct checks.
 - [License](#license)
 ---
 
-## 🧩 Problem Statement
+## Problem Statement
 
-In distributed systems, generating unique identifiers at scale introduces several
+🧩 In distributed systems, generating unique identifiers at scale introduces several
 challenges:
 
 - Avoiding centralized coordination
@@ -35,9 +35,9 @@ or availability risks.
 
 ---
 
-## 🛠️ Solution Overview
+## Solution Overview
 
-This project implements a **Snowflake-style ID generation algorithm** in C#.
+🛠️ This project implements a **Snowflake-style ID generation algorithm** in C#.
 Each instance (pod):
 
 - Generates IDs independently
@@ -50,9 +50,9 @@ across multiple pods and verified for uniqueness.
 
 ---
 
-## 🆔 ID Structure
+## ID Structure
 
-Each generated ID is composed of:
+Each generated 🆔 ID is composed of:
 
 - **Timestamp** – ensures time ordering
 - **Datacenter ID** – logical grouping
@@ -67,14 +67,14 @@ This structure allows deterministic uniqueness without coordination.
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
-### Prerequisites
+### 🧰 Prerequisites
 
 - Docker
 - .NET 10 (or later) SDK installed. Any IDE(Visual Studio, Visual Studio Code, Rider)
 
-### Local Setup
+### ⚙️ Local Setup
 
 1. **Clone the Repository:**
    ```bash
@@ -101,6 +101,6 @@ This structure allows deterministic uniqueness without coordination.
 
 ---
 
-## 📝 License
+## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the 📝 [LICENSE](LICENSE) file for details.
