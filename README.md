@@ -9,7 +9,7 @@ via distinct checks.
 
 ---
 
-## Table of Contents
+## 📑 Table of Contents
 
 - [Problem Statement](#problem-statement)
 - [Solution Overview](#solution-overview)
@@ -19,7 +19,7 @@ via distinct checks.
 
 ---
 
-## Problem Statement
+## 🧩 Problem Statement
 
 In distributed systems, generating unique identifiers at scale introduces several
 challenges:
@@ -35,7 +35,7 @@ or availability risks.
 
 ---
 
-## Solution Overview
+## 🛠️ Solution Overview
 
 This project implements a **Snowflake-style ID generation algorithm** in C#.
 Each instance (pod):
@@ -50,7 +50,7 @@ across multiple pods and verified for uniqueness.
 
 ---
 
-## ID Structure
+## 🆔 ID Structure
 
 Each generated ID is composed of:
 
@@ -67,7 +67,7 @@ This structure allows deterministic uniqueness without coordination.
 
 ---
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 
