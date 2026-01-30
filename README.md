@@ -16,7 +16,7 @@ via distinct checks.
 - [ID Structure](#id-structure)
 - [Architecture](#architecture)
 - [Getting Started](#getting-started)
-
+- [License](#license)
 ---
 
 ## 🧩 Problem Statement
@@ -101,3 +101,6 @@ This structure allows deterministic uniqueness without coordination.
 
 ---
 
+## 📝 License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
