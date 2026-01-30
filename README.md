@@ -78,13 +78,13 @@ This structure allows deterministic uniqueness without coordination.
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/.git  ????
-   cd ????
+   git clone https://github.com/elminabilov/distributed-id-generator.git
+   cd src
    ```
 
 2. **Run the docker compose file:**
    ```bash
-   dotnet run
+   docker compose -f docker-compose.yaml -p src up -d
    ```
 
 3. **Run the following postgre command in the shell of first pod to ensure id count equals distinct id count:**
